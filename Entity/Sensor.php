@@ -11,6 +11,7 @@ class Sensor extends BaseEntity
 	public $value;					// Wert
 	public $unit; 					// Einheit
 
+	/*
 	public function __construct($date, $sensor, $sensorDescription, $value, $unit) {
 		$this->date = $ddate;
 		$this->sensor = $sensor;
@@ -18,5 +19,6 @@ class Sensor extends BaseEntity
 		$this->value = $value;
 		$this->unit = $unit;
 	 }
+	 */
 
 }

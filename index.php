@@ -40,5 +40,5 @@ $actionName       = (isset($urlParts[1]) && $urlParts[1] ? $urlParts[1] : 'index
 $actionMethodName = $actionName.'Action';
 
 $controller = new $controllerClassName();
-//print_r($actionName);
+print_r($actionName);
 $controller->$actionMethodName();
