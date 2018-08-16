@@ -3,16 +3,6 @@ namespace Api\Controller;
 
 use Api\Library\ApiException;
 
-/**
- * Class ApiController
- * Authentifizierung und andere allgemeine abläufe
- *
- *  @author   	j.herzig
- *  @version 	0.0
- *  @package 	Api\Controller
- */
-
-//TODO: implementieren class ApiController Authentifizierung
 abstract class ApiController
 {
 	public function initialize()
@@ -89,7 +79,7 @@ abstract class ApiController
 				$netmaskDecimal  = ~$wildcardDecimal;
 
 				if (($ipDecimal & $netmaskDecimal) == ($rangeDecimal & $netmaskDecimal)) {
-					// Netzmaske enthält die IP
+					// Netzmaske enhält die IP
 					return;
 				}
 			}

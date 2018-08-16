@@ -11,6 +11,9 @@ spl_autoload_register(function ($className) {
 	if (file_exists($fileName)) {
 		include $fileName;
 	}
+	else{
+		return;
+	}
 });
 
 /**
@@ -21,6 +24,8 @@ spl_autoload_register(function ($className) {
  * curl -g -H "Authorization: Token token=\"super_geheimes_token\"" -X POST "https://api.jherzig.ch/test_rest/v1/user" -d "{\"username\":\"Patrick\"}"
  * curl -g -H "Authorization: Token token=\"super_geheimes_token\"" -X PUT "https://api.jherzig.ch/test_rest/v1/user" -d "{\"id\":\"5\",\"username\":\"Patrick\"}"
  * 
+ * 
+ * curl -g -H "Authorization: Token token=\"super_geheimes_token\"" -X POST "http://localhost/REST_SENSOR/v1/sensor" -d "{\"id\":\"190\",\"date\":null,\"sensor\":\"Test Name 16.08.2018\",\"sensorDescription\":\"POST Beschreibung Sensor TEST\",\"value\":\"32\",\"unit\":\"C\"}"
  */
 
 
@@ -35,10 +40,11 @@ array_shift($urlParts);
 $controllerName      = (isset($urlParts[0]) && $urlParts[0] ? $urlParts[0] : 'index');
 $controllerClassName = '\\Api\\Controller\\'.ucfirst($controllerName).'Controller';
 
+
 // build the action method
 $actionName       = (isset($urlParts[1]) && $urlParts[1] ? $urlParts[1] : 'index');
 $actionMethodName = $actionName.'Action';
 
 $controller = new $controllerClassName();
-print_r($actionName);
 $controller->$actionMethodName();
+?> 

@@ -66,6 +66,7 @@ class UserController extends ApiController
 		$sensor = $this->createExampleSensor();
 
 		// Benutzerdaten als Array zurück geben.
+		print_r('/ class UserController extends ApiController / ');
 		return $sensor->toArray();
 	}
 
@@ -149,7 +150,7 @@ class UserController extends ApiController
 		$sensor           			= new Sensor();
 		$sensor->id       			= 1;
 		$sensor->sensor	  			= "Test";
-		$sensor->sensorDescription 	= "Beschreibung Sensor";
+		$sensor->sensorDescription 	= "Hallo Jörg Beschreibung Sensor";
 		$sensor->value				= "22.5";
 		$sensor->unit 				= "C";
 

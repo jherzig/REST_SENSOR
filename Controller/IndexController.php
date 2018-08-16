@@ -4,6 +4,7 @@ namespace Api\Controller;
 use Api\Library\ApiException;
 use Api\Entity\User;
 use Api\Entity\Sensor;
+use Api\inc\Db_sql;
 
 /**
  * Class UserController
@@ -15,33 +16,22 @@ class IndexController extends ApiController
 {
 	public function indexAction()
 	{
-		echo "\n<br />";
-		echo ("index Seite rest API:  ");
-		echo "\n<br />";
-		echo date("H:i:s");
-		echo "\n<br />";
-		echo "\n<br />";
-
-		require 'inc/db.php';
-		echo "<h1>Programm Adressbuch</h1>";
-		$erg = $db->query("SELECT * FROM tdaten");
-		print_r($erg);
-		if ($erg->num_rows) {
-			echo "<p>Daten vorhanden: Anzahl ";
-			echo $erg->num_rows;
+		if (FALSE) {
+			//TODO: Debug Modul einbauen
+		} else {
+			echo "\n<br />";
+			echo ("index Seite rest API:  ");
+			echo "\n<br />";
+			echo date("H:i:s");
+			echo "\n<br />";
+			echo "Version: v1 ";
+			echo "\n<br />";
+			echo "Objekt: sensor ";
+			echo "\n<br />";
+			echo "URL: REST_SENSOR/v1/sensor {?id=4} ";
+			echo "\n<br />";
 		}
-		//$datensatz = $erg->fetch_assoc();  // nur der erste Satz
-		$datensatz = $erg->fetch_all(MYSQLI_ASSOC);
-		echo "<pre>";
-		print_r($datensatz);
-		echo "</pre>";
-
-		require 'inc/db_PDO.php';
-		$sql = "SELECT * FROM tdaten";
-        foreach ($pdo->query($sql) as $row) {
-            echo $row['datSensor']." ".$row['datSensorDescription']."<br />";
-            echo "Value: ".$row['datValue']."<br /><br />";
-        }
-	
+		
+		
 	}
 }

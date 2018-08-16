@@ -7,31 +7,38 @@ use Api\Entity\Sensor;
 
 /**
  * Class UserController
- * Endpunkt für die User-Funktionen.
+ * Endpunkt für die Sensor-Funktionen.
  *
- * @package Api\Controller
+ *  @author   	j.herzig
+ * @version 	1.0
+ * @package 	Api\Controller
  */
-class UserController extends ApiController
+
+class SensorController extends ApiController
 {
 	public function indexAction()
 	{
 		try {
-			// Checks auslösen
+			//TODO: Authentifizierung hinzufügen  Checks auslösen
 			//$this->initialize();
 
 			$input = json_decode(file_get_contents('php://input'), true);
-			//print_r($input);
-			
 
 			// Wir wählen die Operation anhand der Request Methode
 			if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-				$result = $this->get((int)$_GET['id']);
+				if (empty($_GET['id'])) {
+					$result = $this->getALL();
+				}
+				else{
+					$result = $this->getID((int)$_GET['id']);
+				} 
 			} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-				//print_r($input);
 				$result = $this->create($input);
 			} elseif ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+				//TODO: implementieren
 				$result = $this->update($input);
-			} elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+			} elseif ($_SERVER['REQUEST_METHOD'] == 'DELETE'){ 
+				//TODO: implementieren
 				$result = $this->delete((int)$_GET['id']);
 			} else {
 				throw new ApiException('', ApiException::UNKNOWN_METHOD);
@@ -49,7 +56,40 @@ class UserController extends ApiController
 		}
 
 		header('Content-Type: application/json');
-		echo json_encode($result);
+
+		// Überprüfen ob es nur ein Senor ist oder ein Array
+		if ($this->getLevel($result) > 1) {
+			foreach ($result as $obj) {
+				$result_json = json_encode($obj);
+				echo $result_json;
+			}
+		} else {
+			$result_json = json_encode($result);
+			echo $result_json;
+		}
+	}
+
+
+	/**
+	 * Gibt das level eines Array zurück
+	 * @param array
+	 *
+	 * @return int
+	 */
+	private function getLevel($arr, $level = 0)
+	{
+		$return = $level;
+		if (is_array($arr)|| is_object($arr))
+		{
+			foreach ($arr as $key => $value)
+			{
+				$level_new = $this->getLevel($value, $level + 1);
+				if($level_new > $return)
+					return $level_new;
+			}
+		}
+
+		return $return;
 	}
 
 	/**
@@ -57,16 +97,27 @@ class UserController extends ApiController
 	 *
 	 * @return array
 	 */
-	private function get($id)
-	{
-		// Benutzer aus der Datenbank laden.
-		// ...
+	private function getID($id)
+	{	
+		$sensor = new Sensor();
 
-		// Für das Beispiel einfach ein neuer User
-		$sensor = $this->createExampleSensor();
+		$sensor->getID($id);		
 
-		// Benutzerdaten als Array zurück geben.
 		return $sensor->toArray();
+	}
+
+		/**
+	 *
+	 *
+	 * @return array
+	 */
+	private function getALL()
+	{	
+		$sensor = new Sensor();
+
+		$arrSensoren = $sensor->getALL();
+
+		return $arrSensoren;
 	}
 
 	/**
@@ -76,18 +127,17 @@ class UserController extends ApiController
 	 */
 	private function create(array $data)
 	{
-		// Benutzer anlegen ...
-		$user           = new User();
-		$user->username = $data['username'];
+		// Sensor Anlegen
+		$sensor 		= new Sensor();
+		$sensor->id					= (int)$data['id'];
+		$sensor->sensor	  			= $data['sensor'];
+		$sensor->sensorDescription 	= $data['sensorDescription'];
+		$sensor->value				= $data['value'];
+		$sensor->unit 				= $data['unit'];
 
-		// ... und in der Datenbank speichern
+		$sensor->create($sensor); 
 
-		
-		// Für das Beispiel:
-		$user->id = rand(100, 999);
-
-		return ['id' => $user->id];
-		//return $user->toArray();
+		return $sensor->toArray();
 	}
 
 	/**
@@ -98,19 +148,20 @@ class UserController extends ApiController
 	 */
 	private function update(array $data)
 	{
+		//TODO: implementieren
 		if (!isset($data['id'])) {
 			throw new ApiException('Missing ID', ApiException::MALFORMED_INPUT);
 		}
 
-		// Benutzer aus der Datenbank laden
+		// Sensor aus der Datenbank laden
 		// ...
 
 		$user = $this->createExampleUser();
 
-		// Benutzer aktualisieren
+		// Sensor aktualisieren
 		$user->username = $data['username'];
 
-		// Benutzer wieder in der DB speichern
+		// Sensor wieder in der DB speichern
 		// ...
 
 		return ['id' => $user->id];
@@ -123,36 +174,10 @@ class UserController extends ApiController
 	 */
 	private function delete($id)
 	{
-		// Benutzer in der Datenbank löschen
+		//TODO: implementieren
+		// Sensor in der Datenbank löschen
 		// ...
 
 		return [];
-	}
-
-	/**
-	 * @return User
-	 */
-	private function createExampleUser()
-	{
-		$user           = new User();
-		$user->id       = 5;
-		$user->username = 'stefan';
-
-		return $user;
-	}
-
-	/**
-	 * @return Sensor
-	 */
-	private function createExampleSensor()
-	{
-		$sensor           			= new Sensor();
-		$sensor->id       			= 1;
-		$sensor->sensor	  			= "Test";
-		$sensor->sensorDescription 	= "Beschreibung Sensor";
-		$sensor->value				= "22.5";
-		$sensor->unit 				= "C";
-
-		return $sensor;
 	}
 }
