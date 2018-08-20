@@ -1,7 +1,7 @@
 <?php
 namespace Api\Entity;
 
-use Api\inc\Db_sql;
+use Api\inc\Db_con;
 
 /**
 * Diese Klasse repräsentiert ein Sensor.
@@ -13,12 +13,10 @@ use Api\inc\Db_sql;
 class Sensor extends BaseEntity
 {
 	//Definition der Eigenschaften
-	public $id;
-	public $date;
-	public $sensor;					// Sensor Name
-	public $sensorDescription;		// Beschreibung
-	public $value;					// Wert
-	public $unit; 					// Einheit
+	public $senKey;					// DB Key
+	public $senStaId;				// Stations ID
+	public $senName;				// Sensor Name
+	public $senDescription;			// Beschreibung		
 
 	/**
 	 * Erstellt einen Eintrag in der tdaten Tabelle
@@ -31,15 +29,17 @@ class Sensor extends BaseEntity
 	{
 		// Sensor Anlegen
 
-		$db = db_sql::getInstance(); 
+		$db = db_con::getInstance(); 
 		$neuer_sensor = array();
-		$neuer_sensor['id'] 					= $sensor->id;
-		$neuer_sensor['datSensor'] 				= $sensor->sensor;
-		$neuer_sensor['datSensorDescription']	= $sensor->sensorDescription;
-		$neuer_sensor['datValue'] 				= $sensor->value;
+		$neuer_sensor['senStaId'] 				= $sensor->senStaId;
+		$neuer_sensor['senName']				= $sensor->senName;
+		$neuer_sensor['senDescription'] 		= $sensor->senDescription;
  
-		$statement = $db->prepare("INSERT INTO tdaten (id, datSensor, datSensorDescription, datValue) VALUES (:id, :datSensor, :datSensorDescription, :datValue)");
-		$statement->execute($neuer_sensor);  	
+		$statement = $db->prepare("INSERT INTO tsensor (senStaId, senName, senDescription) VALUES (:senStaId, :senName, :senDescription)");
+		$statement->execute($neuer_sensor);
+		$id = $db->lastInsertId();
+		
+		$sensor = $this->getSensor($id);
 
 		return $sensor;
 	}
@@ -47,32 +47,33 @@ class Sensor extends BaseEntity
 	/**
 	 * Gibt anhand der ID Sensor Daten zurück
 	 *  
-	 * @param ID
+	 * @param senKey
 	 *
 	 * @return Sensor
 	 */
-	 public function getID($id)
+	 public function getSensor($id)
 	{	
-		$db = db_sql::getInstance(); 
+		$db = db_con::getInstance(); 
 
 		if(isset($id)) {
-			$statement = $db->prepare("SELECT * FROM tdaten WHERE id = ?");
+			$statement = $db->prepare("SELECT * FROM tsensor WHERE senKey = ?");
 			$statement->execute(array($id));   
-			// nur zum testen
-			while($row = $statement->fetch()) {
-				$this->id       			= $id;
-				$this->sensor	  			= $row['datSensor'];
-				$this->sensorDescription 	= $row['datSensorDescription'];
-				$this->value				= $row['datValue'];
-				$this->unit 				= "C";
-			}
+			
 		} else {
-			// TODO: Andere Fehlerausgabe um darauf zu reagieren
-			print_r('Bitte eine ?id übergeben');
+			//TODO: Fehlerbehandlung wenn keine ID
+			echo("ID wird benötigt");  
+		}
+
+		while($row = $statement->fetch()) {
+			$this->senKey       		= $row['senKey'];
+			$this->senStaId	  			= $row['senStaId'];
+			$this->senName 				= $row['senName'];
+			$this->senDescription		= $row['senDescription'];
 		}
 
 		return $this;
 	}
+
 
 	/**
 	 * Gibt alle Sensor Daten zurück
@@ -83,21 +84,20 @@ class Sensor extends BaseEntity
 	 */
 	public function getALL()
 	{	
-		$db = db_sql::getInstance(); 
+		$db = db_con::getInstance(); 
 		$arrSensor = array();
 		$i = 0;
 
-		$statement = $db->prepare("SELECT * FROM tdaten");
+		$statement = $db->prepare("SELECT * FROM tsensor");
 		$statement->execute();   
 
 			while($row = $statement->fetch()) {
 				$sensor = new Sensor();
 
-				$sensor->id       			= $row['id'];
-				$sensor->sensor	  			= $row['datSensor'];
-				$sensor->sensorDescription 	= $row['datSensorDescription'];
-				$sensor->value				= $row['datValue'];
-				$sensor->unit 				= "C";
+				$sensor->senKey       		= $row['senKey'];
+				$sensor->senStaId	  			= $row['senStaId'];
+				$sensor->senName 				= $row['senName'];
+				$sensor->senDescription		= $row['senDescription'];
 
 				$arrSensor[$i] = $sensor;
 				$i++;

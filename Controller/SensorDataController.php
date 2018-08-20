@@ -3,7 +3,10 @@ namespace Api\Controller;
 
 use Api\Library\ApiException;
 use Api\Entity\User;
+use Api\Entity\SensorData;
+//TODO: Löschen nur zum testen
 use Api\Entity\Sensor;
+
 
 /**
  * Class UserController
@@ -14,7 +17,7 @@ use Api\Entity\Sensor;
  * @package 	Api\Controller
  */
 
-class SensorController extends ApiController
+class SensorDataController extends ApiController
 {
 	public function indexAction()
 	{
@@ -26,16 +29,16 @@ class SensorController extends ApiController
 
 			// Wir wählen die Operation anhand der Request Methode
 			if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-				//$input = array("sdaDt"=>"","senName"=>"TEST Sender JHE","staName"=>"Station Name","sdaValue"=>"38","dtyUnit"=>"C");
+
+				//$input = array("sdaDt"=>"2018-08-20 09:25:50:00","sdaSenId"=>"0","sdaValue"=>"36","sdaDtyId"=>"1");
 				//$result = $this->create($input);
-				
+
 				if (empty($_GET['id'])) {
 					$result = $this->getALL();
 				}
 				else{
-					$result = $this->getSensor((int)$_GET['id']);
+					$result = $this->getID((int)$_GET['id']);
 				} 
-				
 			} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$result = $this->create($input);
 			} elseif ($_SERVER['REQUEST_METHOD'] == 'PUT') {
@@ -101,13 +104,13 @@ class SensorController extends ApiController
 	 *
 	 * @return array
 	 */
-	private function getSensor($id)
+	private function getID($id)
 	{	
-		$sensor = new Sensor();
+		$sensorData = new SensorData();
 
-		$sensor->getSensor(id);		
+		$sensorData->getSensorData($id);		
 
-		return $sensor->toArray();
+		return $sensorData->toArray();
 	}
 
 		/**
@@ -117,9 +120,9 @@ class SensorController extends ApiController
 	 */
 	private function getALL()
 	{	
-		$sensor = new Sensor();
+		$sensorData = new SensorData();
 
-		$arrSensoren = $sensor->getALL();
+		$arrSensoren = $sensorData->getALL();
 
 		return $arrSensoren;
 	}
@@ -132,14 +135,15 @@ class SensorController extends ApiController
 	private function create(array $data)
 	{
 		// Sensor Anlegen
-		$sensor 		= new Sensor();
-		$sensor->senStaId	  			= $data['senStaId'];
-		$sensor->senName 				= $data['senName'];
-		$sensor->senDescription			= $data['senDescription'];
+		$sensorData 		= new SensorData();
+		$sensorData->sdaDt	  			= $data['sdaDt'];
+		$sensorData->sdaSenId		 	= $data['sdaSenId'];
+		$sensorData->sdaValue			= $data['sdaValue'];
+		$sensorData->sdaDtyId 			= $data['sdaDtyId'];
 
-		$sensor->create($sensor); 
+		$sensorData->create($sensorData); 
 
-		return $sensor->toArray();
+		return $sensorData->toArray();
 	}
 
 	/**

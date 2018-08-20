@@ -26,6 +26,8 @@ spl_autoload_register(function ($className) {
  * 
  * 
  * curl -g -H "Authorization: Token token=\"super_geheimes_token\"" -X POST "http://localhost/REST_SENSOR/v1/sensor" -d "{\"id\":\"190\",\"date\":null,\"sensor\":\"Test Name 16.08.2018\",\"sensorDescription\":\"POST Beschreibung Sensor TEST\",\"value\":\"32\",\"unit\":\"C\"}"
+ * 
+ * curl -g -H "Authorization: Token token=\"super_geheimes_token\"" -X POST "http://localhost/REST_SENSOR/v1/sensordata" -d "{\"sdaDt\":\"2018-08-20 11:45:50:00\",\"sdaSenId\":22,\"sdaValue\":\"29\",\"sdaDtyId\":\"1\"}
  */
 
 
