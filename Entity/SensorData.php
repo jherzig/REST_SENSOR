@@ -106,7 +106,30 @@ class SensorData extends BaseEntity
 		return $this;
 	}
 	
-	
+	public function getALL()
+	{	
+		$db = db_con::getInstance(); 
+		$arrSensorDaten = array();
+		$i = 0;
+
+		$statement = $db->prepare("SELECT * FROM tsensordata");
+		$statement->execute();   
+
+			while($row = $statement->fetch()) {
+				$sensordaten = new SensorData();
+
+				$sensordaten->sdaKey       		= $row['sdaKey'];
+				$sensordaten->sdaDt 				= $row['sdaDt'];
+				$sensordaten->sdaSenId				= $row['sdaSenId'];
+				$sensordaten->sdaValue				= $row['sdaValue'];
+				$sensordaten->sdaDtyId				= $row['sdaDtyId'];
+
+				$arrSensorDaten[$i] = $sensordaten;
+				$i++;
+			}
+
+		return $arrSensorDaten;
+	}
 	
 
 }

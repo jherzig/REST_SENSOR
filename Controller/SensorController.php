@@ -2,8 +2,9 @@
 namespace Api\Controller;
 
 use Api\Library\ApiException;
-use Api\Entity\User;
 use Api\Entity\Sensor;
+
+
 
 /**
  * Class UserController
@@ -105,7 +106,7 @@ class SensorController extends ApiController
 	{	
 		$sensor = new Sensor();
 
-		$sensor->getSensor(id);		
+		$sensor->getSensor($id);		
 
 		return $sensor->toArray();
 	}

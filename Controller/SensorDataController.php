@@ -2,10 +2,7 @@
 namespace Api\Controller;
 
 use Api\Library\ApiException;
-use Api\Entity\User;
 use Api\Entity\SensorData;
-//TODO: Löschen nur zum testen
-use Api\Entity\Sensor;
 
 
 /**

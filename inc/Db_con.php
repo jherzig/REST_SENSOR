@@ -6,6 +6,7 @@ use \PDO;
 class Db_con
    { 
       //per Komma mehrere Variablen definieren 
+      //TODO: in Konfiguration auslagern
       private $host = 'localhost',      //Host 
               $user = 'root',           //Username 
               $pw   = '',               //DBpasswort 
