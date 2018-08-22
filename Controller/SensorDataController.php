@@ -66,6 +66,7 @@ class SensorDataController extends ApiController
 			foreach ($result as $obj) {
 				$result_json = json_encode($obj);
 				echo $result_json;
+				echo ",";
 			}
 		} else {
 			$result_json = json_encode($result);
