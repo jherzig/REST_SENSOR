@@ -3,6 +3,7 @@ namespace Api\Controller;
 
 use Api\Library\ApiException;
 use Api\Entity\SensorData;
+use Api\inc\logWriter;
 
 
 /**
@@ -18,11 +19,16 @@ class SensorDataController extends ApiController
 {
 	public function indexAction()
 	{
+		
+		$log = new logWriter("logs");
+
 		try {
 			//TODO: Authentifizierung hinzufügen  Checks auslösen
 			//$this->initialize();
+			$inputString = file_get_contents('php://input');
+			$log->debug("input: {$inputString}");
 
-			$input = json_decode(file_get_contents('php://input'), true);
+			$input = json_decode($inputString, true);
 
 			// Wir wählen die Operation anhand der Request Methode
 			if ($_SERVER['REQUEST_METHOD'] == 'GET') {
