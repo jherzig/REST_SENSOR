@@ -25,10 +25,16 @@ class SensorDataController extends ApiController
 		try {
 			//TODO: Authentifizierung hinzufügen  Checks auslösen
 			//$this->initialize();
-			$inputString = file_get_contents('php://input');
+			$inputString = '{"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"2"}';
+
+			//{"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"2"}
+			//{"sdaDt":"2018-09-0312:35:50:00","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"1"}
+
 			$log->debug("input: {$inputString}");
 
 			$input = json_decode($inputString, true);
+			$logImput = implode(';', $input);
+			$log->debug("json_decode: {$logImput}");
 
 			// Wir wählen die Operation anhand der Request Methode
 			if ($_SERVER['REQUEST_METHOD'] == 'GET') {

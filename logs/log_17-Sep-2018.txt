@@ -1,0 +1,25 @@
+[17-Sep-2018 12:12:50] [127.127.1.1/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:12:55] [localhost/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:21:19] [localhost/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:21:21] [localhost/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:21:30] [localhost/REST_SENSOR/v1/sensordata] : [DEBUG] - input: {"sdaDt":"2018-08-20 11:45:50:00","sdaSenId":22,"sdaValue":"29","sdaDtyId":"1"}
+[17-Sep-2018 12:24:10] [192.168.86.76/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:26:03] [192.168.86.76/REST_SENSOR/v1/sensordata] : [DEBUG] - input: 
+[17-Sep-2018 12:35:41] [localhost/REST_SENSOR/v1/sensordata] : [DEBUG] - input: {"sdaDt":"2018-08-20 11:45:50:00","sdaSenId":22,"sdaValue":"29","sdaDtyId":"1"}
+[17-Sep-2018 14:49:14] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":17.09.2018,"stime":14:44:19,"sdaSenId":2,"sdaValue":99,"sdaDtyId":"2"}
+[17-Sep-2018 14:49:14] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: 
+[17-Sep-2018 14:50:44] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":17.09.2018,"stime":14:44:19,"sdaSenId":2,"sdaValue":99,"sdaDtyId":"2"}
+[17-Sep-2018 14:51:25] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: 
+[17-Sep-2018 14:51:35] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":17.09.2018,"sdaSenId":2,"sdaValue":99,"sdaDtyId":"2"}
+[17-Sep-2018 14:52:12] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: 
+[17-Sep-2018 14:52:28] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":17.09.2018,"sdaSenId":2,"sdaValue":28.400000,"sdaDtyId":"2"}
+[17-Sep-2018 14:53:34] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: 
+[17-Sep-2018 14:53:44] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":"2018-09-0312:35:50:00","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"1"}
+[17-Sep-2018 14:55:50] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: Array
+[17-Sep-2018 14:56:05] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"2"}
+[17-Sep-2018 16:50:13] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: Array
+[17-Sep-2018 16:50:28] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":99,"sdaDtyId":"2"}
+[17-Sep-2018 16:54:11] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"2"}
+[17-Sep-2018 16:55:28] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: {implode(';', Array)}
+[17-Sep-2018 16:55:42] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - input: {"sdaDt":"17.09.2018","sdaSenId":2,"sdaValue":24.100000,"sdaDtyId":"2"}
+[17-Sep-2018 16:55:53] [localhost/REST_SENSOR/v1/sensordata?XDEBUG_SESSION_START=myPHPTest] : [DEBUG] - json_decode: 17.09.2018;2;24.1;2

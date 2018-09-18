@@ -1,0 +1,5 @@
+[09-Sep-2018 08:40:39] [api.jherzig.ch/test_rest/v1/sensordata] : [DEBUG] - input: 
+[09-Sep-2018 08:42:27] [api.jherzig.ch/test_rest/v1/sensordata] : [DEBUG] - input: {"sdaDt":"2018-09-09 08:42:50:00","sdaSenId":2,"sdaValue":"31","sdaDtyId":"1"}
+[09-Sep-2018 08:44:57] [api.jherzig.ch/test_rest/v1/sensordata] : [DEBUG] - input: {sdaDt:2018-09-03 12:35:50:00,sdaSenId:2,sdaValue:37,sdaDtyId:1}
+[09-Sep-2018 08:44:58] [api.jherzig.ch/test_rest/v1/sensordata] : [DEBUG] - input: {sdaDt:2018-09-03 12:35:50:00,sdaSenId:2,sdaValue:37,sdaDtyId:1}
+[09-Sep-2018 08:47:09] [api.jherzig.ch/test_rest/v1/sensordata] : [DEBUG] - input: {"sdaDt":2018-09-03 12:35:50:00,sdaSenId:2,sdaValue:37,sdaDtyId:1}
